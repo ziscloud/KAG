@@ -150,16 +150,16 @@ class KAGConfigMgr:
         self._is_initialized = False
 
     def init_log_config(self, config):
-        log_conf = config.get("log", {})
-        if log_conf:
-            log_level = log_conf.get("level", "INFO")
-        else:
-            log_level = "INFO"
-        logging.basicConfig(
-            level=logging.getLevelName(log_level),
-            format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
-            datefmt="%Y-%m-%d %H:%M:%S",
-        )
+        # log_conf = config.get("log", {})
+        # if log_conf:
+        #     log_level = log_conf.get("level", "INFO")
+        # else:
+        #     log_level = "INFO"
+        # logging.basicConfig(
+        #     level=logging.getLevelName(log_level),
+        #     format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
+        #     datefmt="%Y-%m-%d %H:%M:%S",
+        # )
         logging.getLogger("neo4j.notifications").setLevel(logging.ERROR)
         logging.getLogger("neo4j.io").setLevel(logging.INFO)
         logging.getLogger("neo4j.pool").setLevel(logging.INFO)
