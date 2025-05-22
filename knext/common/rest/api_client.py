@@ -98,7 +98,7 @@ class ApiClient(object):
         # Set default User-Agent.
         self.user_agent = "OpenAPI-Generator/1.0.0/python"
         self.client_side_validation = configuration.client_side_validation
-        self.url_prefix = "/public/v" + knext.common.rest.__version__
+        self.url_prefix = "/api/public/v" + knext.common.rest.__version__
 
     def __enter__(self):
         return self
