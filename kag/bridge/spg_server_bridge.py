@@ -17,51 +17,6 @@ import kag.interface as interface
 from kag.common.conf import KAGConstants, init_env
 import logging
 
-import logging.config
-
-# 定义全局配置字典
-LOGGING_CONFIG = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "standard": {
-            "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-            "datefmt": "%Y-%m-%d %H:%M:%S"
-        }
-    },
-    "handlers": {
-        # 按时间分割日志（每天午夜分割，保留7天）
-        "timed_rotating_file": {
-            "class": "logging.handlers.TimedRotatingFileHandler",
-            "filename": "logs/kag/common-default.log",
-            "when": "midnight",
-            "interval": 1,
-            "backupCount": 7,
-            "formatter": "standard",
-            "encoding": "utf-8"
-        },
-        # 按文件大小分割（可选，与时间分割二选一）
-        "rotating_file": {
-            "class": "logging.handlers.RotatingFileHandler",
-            "filename": "logs/kag/common-default.log",
-            "maxBytes": 10 * 1024 * 1024,  # 10MB
-            "backupCount": 5,
-            "formatter": "standard",
-            "encoding": "utf-8"
-        }
-    },
-    "loggers": {
-        "": {  # 根记录器，所有模块默认继承此配置
-            "handlers": ["timed_rotating_file"],  # 可替换为 "rotating_file"
-            "level": "DEBUG",
-            "propagate": True
-        }
-    }
-}
-
-# 加载全局配置
-logging.config.dictConfig(LOGGING_CONFIG)
-
 logger = logging.getLogger(__name__)
 
 def init_kag_config(project_id: str, host_addr: str):
